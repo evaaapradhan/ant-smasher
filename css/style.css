@@ -1,0 +1,15 @@
+#canvas{
+    border: 5px solid black;
+    width: 900px;
+    height: 500px;
+    margin: 50px 0px 0px 350px;
+    
+}
+
+.heading{
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: underline;
+}
