@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
 
-
+var score=0;
 
 function randomIntFromRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -24,8 +24,8 @@ function randomIntFromRange(min, max) {
     this.w = w;
     this.h = h;
     this.move = {
-      x: Math.random()*2.5-1.5,
-      y: Math.random()*2.5-1.5
+      x: Math.random()*2-1.5,
+      y: Math.random()*2-1.5
     };
   
     this.draw = () =>{
@@ -53,7 +53,7 @@ function randomIntFromRange(min, max) {
     };
   }
   
-  //on click ants disappear
+  //on click ant disappear
   canvas.addEventListener('click', function (event) {
     let x = event.clientX;
     let y = event.clientY;
@@ -65,6 +65,8 @@ function randomIntFromRange(min, max) {
         && y >= ant.y 
         && y <= ant.y + ant.h){
         ants.splice(i, 1);
+        score ++;
+        
       }
     }
   });
@@ -105,8 +107,12 @@ function randomIntFromRange(min, max) {
     ants.forEach(ant => {
      ant.draw(ants);
      ant.checkCollision(ants)
-    })
+    });
+    ctx.fillStyle = "#000";
+    ctx.font = "30px Verdana";
+    ctx.fillText("Score : "+score,10,canvas.height-20);
   }
   
-  init()
-  animate()
+  init();
+  animate();
+
