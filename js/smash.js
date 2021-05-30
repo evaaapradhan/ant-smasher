@@ -1,5 +1,5 @@
 const canvas = document.querySelector('canvas');
-const can = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 
 canvas.height = window.innerHeight;
 canvas.width = window.innerWidth;
@@ -24,23 +24,23 @@ function randomIntFromRange(min, max) {
     this.w = w;
     this.h = h;
     this.move = {
-      x: Math.random()*3.5-1.5,
-      y: Math.random()*3.5-1.5
+      x: Math.random()*2.5-1.5,
+      y: Math.random()*2.5-1.5
     };
   
     this.draw = () =>{
       let ant = new Image();
       ant.src = 'images/cute-ant.png';
-      can.drawImage(ant, this.x, this.y, this.w, this.h);
+      ctx.drawImage(ant, this.x, this.y, this.w, this.h);
     };
   
-    this.checkCollision = (manyants) =>{
-      for(let i = 0; i < manyants.length; i++){
-        if(this === manyants[i]) continue;
-        if(this.x < manyants[i].x + manyants[i].w &&
-          this.x + this.w > manyants[i].x &&
-          this.y < manyants[i].y + manyants[i].h &&
-          this.y + this.h > manyants[i].y){
+    this.checkCollision = (ants) =>{
+      for(let i = 0; i < ants.length; i++){
+        if(this === ants[i]) continue;
+        if(this.x < ants[i].x + ants[i].w &&
+          this.x + this.w > ants[i].x &&
+          this.y < ants[i].y + ants[i].h &&
+          this.y + this.h > ants[i].y){
           this.move.x = -this.move.x;
           this.move.y = -this.move.y;
         }
@@ -53,13 +53,26 @@ function randomIntFromRange(min, max) {
     };
   }
   
+  //on click ants disappear
+  canvas.addEventListener('click', function (event) {
+    let x = event.clientX;
+    let y = event.clientY;
   
-    
+    for (let i = 0; i < ants.length; i++) {
+      let ant = ants[i];
+      if (x >= ant.x 
+        && x <= ant.x + ant.w
+        && y >= ant.y 
+        && y <= ant.y + ant.h){
+        ants.splice(i, 1);
+      }
+    }
+  });
   
   //Array
-  let manyants;
+  let ants;
   function init() {
-    manyants = [];
+    ants = [];
   
     for (let i = 0; i < 15; i++) {
       let h = randomIntFromRange(60, 120);
@@ -67,29 +80,31 @@ function randomIntFromRange(min, max) {
       let y = randomIntFromRange(h, canvas.height-h);
       let w = h - 18;
       if(i!=0){
-        for(let j = 0; j < manyants.length; j++){
-          if(x < manyants[j].x + manyants[j].w &&
-            (x + w) > manyants[j].x &&
-            y < manyants[j].y + manyants[j].h &&
-            (y + h) > manyants[j].y){
+        for(let j = 0; j < ants.length; j++){
+          if(x < ants[j].x + ants[j].w &&
+            (x + w) > ants[j].x &&
+            y < ants[j].y + ants[j].h &&
+            (y + h) > ants[j].y){
             x = randomIntFromRange(h, canvas.width-h);
             y = randomIntFromRange(h, canvas.height-h);
             j = -1; // to restart 
           }
         }
       }
-      manyants.push(new drawAnt(x, y, w, h));
+      ants.push(new drawAnt(x, y, w, h));
     }
   }
+  
+  
   
   // Animation
   function animate() {
     requestAnimationFrame(animate)
-    can.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
   
-    manyants.forEach(ant => {
-     ant.draw(manyants);
-     ant.checkCollision(manyants)
+    ants.forEach(ant => {
+     ant.draw(ants);
+     ant.checkCollision(ants)
     })
   }
   
