@@ -110,7 +110,8 @@ function randomIntFromRange(min, max) {
     });
     ctx.fillStyle = "#000";
     ctx.font = "30px Verdana";
-    ctx.fillText("Score : "+score,10,canvas.height-20);
+    ctx.fillText("Score : "+score,30,30);
+    ctx.fillText("Ant Smasher" , 360,30)
   }
   
   init();
