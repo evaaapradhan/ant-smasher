@@ -1,16 +1,16 @@
 canvas{
     background-color: white;
-    border: 5px solid black;
-    padding-left: 0;
+    border: 3px solid black;
+    position: absolute;
+    display: block;
+    /* padding-left: 0;
     padding-right: 0;
     margin-left: auto;
-    margin-right: auto;
-    display: block;
-    /* width: 800px; */
+    margin-right: auto; */
 
-    /* width: 1300px;
-    height: 700px; */
-    /* margin: 50px 0px 0px 350px; */
+    width: 98%;
+    height: 98%;
+    margin-left: 10px;
     cursor: pointer;
 }
 

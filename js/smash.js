@@ -24,8 +24,8 @@ function randomIntFromRange(min, max) {
     this.w = w;
     this.h = h;
     this.move = {
-      x: Math.random()*2-1.5,
-      y: Math.random()*2-1.5
+      x: Math.random()*3-1.5,
+      y: Math.random()*3-1.5
     };
   
     this.draw = () =>{
@@ -110,8 +110,8 @@ function randomIntFromRange(min, max) {
     });
     ctx.fillStyle = "#000";
     ctx.font = "30px Verdana";
-    ctx.fillText("Score : "+score,30,30);
-    ctx.fillText("Ant Smasher" , 360,30)
+    ctx.fillText("Score : "+score,90,30);
+    ctx.fillText("Ant Smasher" , 500,30)
   }
   
   init();
