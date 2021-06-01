@@ -6,6 +6,9 @@ canvas.width = window.innerWidth;
 
 var score=0;
 
+var scor = new Audio();
+scor.src = "sounds/smash.wav";
+
 function randomIntFromRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
@@ -66,6 +69,7 @@ function randomIntFromRange(min, max) {
         && y <= ant.y + ant.h){
         ants.splice(i, 1);
         score ++;
+        scor.play();
         
       }
     }
