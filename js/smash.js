@@ -114,8 +114,8 @@ function randomIntFromRange(min, max) {
     });
     ctx.fillStyle = "#000";
     ctx.font = "30px Verdana";
-    ctx.fillText("Score : "+score,90,30);
-    ctx.fillText("Ant Smasher" , 500,30)
+    ctx.fillText("Score : "+score,360,30);
+    ctx.fillText("Ant Smasher" , 120,30)
   }
   
   init();
